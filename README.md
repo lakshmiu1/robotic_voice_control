@@ -9,5 +9,8 @@ pip3 install SpeechRecognition
 export TURTLEBOT3_MODEL=burger
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 
-#Open another terminal window
+#Open another terminal window to control a s single robot
 python3 ros_voice_control.py
+
+#To control multiple robots 
+python3 ros_voice_control_multi.py
