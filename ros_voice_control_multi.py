@@ -31,6 +31,9 @@ class ASRControl(object):
 
         self.ns = "tb3_2"
 
+        self.thr1 = 0.8 #Laser scan range threshold
+        self.thr2 = 0.8
+
         self.sub_ = rospy.Subscriber(f"/{self.ns}/scan", LaserScan, self.callback)  # Subscriber object which will listen "LaserScan" type messages
                                                                     # from the "/scan" Topic and call the "callback" function
 
@@ -45,9 +48,6 @@ class ASRControl(object):
         self.cmd_vel.linear.x=0;
         self.cmd_vel.angular.z=0;
 
-        self.thr1 = 0.8 #Laser scan range threshold
-        self.thr2 = 0.8
- 
         self.obstacle = False 
 
         # A mapping from keywords or phrases to commands
