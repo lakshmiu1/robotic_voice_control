@@ -58,7 +58,7 @@ class ASRControl(object):
                                 'left',
                                 'right',
                                 ]
-        with self.m as source: self.r.adjust_for_ambient_noise(source)
+        with self.m as source: self.r.adjust_for_ambient_noise(source, duration=1)
         while not rospy.is_shutdown():
             print("Say something! Obstacle found {}:".format(self.obstacle))
             with self.m as source: audio = self.r.listen(source)
