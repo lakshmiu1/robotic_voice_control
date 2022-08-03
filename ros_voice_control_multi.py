@@ -18,7 +18,8 @@ class ASRControl(object):
     """Simple voice control interface for ROS turtlebot
 
     Attributes:
-        pub: where to send commands (default: '/cmd_vel')
+        pub_: where to send commands  (default: '/cmd_vel')  
+        sub_: where to receive commands 
 
     """
     def __init__(self):
@@ -61,7 +62,7 @@ class ASRControl(object):
         with self.m as source: self.r.adjust_for_ambient_noise(source, duration=1)
         while not rospy.is_shutdown():
             print("Say something! Obstacle found {}:".format(self.obstacle))
-            with self.m as source: audio = self.r.listen(source)
+            with self.m as source: audio = self.r.listen(source, timeout=8,phrase_time_limit=8)
             print("Got it! Now to recognize it...")
             try:
                 command = self.r.recognize_google(audio)

@@ -59,7 +59,7 @@ class ASRControl(object):
         with self.m as source: self.r.adjust_for_ambient_noise(source, duration=1)
         while not rospy.is_shutdown():
             print("Say something! Obstacle found {}:".format(self.obstacle))
-            with self.m as source: audio = self.r.listen(source)
+            with self.m as source: audio = self.r.listen(source,timeout=8,phrase_time_limit=8)
             print("Got it! Now to recognize it...")
             try:
                 command = self.r.recognize_google(audio)
